@@ -75,12 +75,47 @@ public class UserController extends HttpServlet {
 			HttpSession session = request.getSession();
 			session.removeAttribute("authUser");
 			session.invalidate();
-			
+	
 			//메인으로 리다이렉트
 			WebUtil.redirect(request, response, "/mysite2/main");
 		} else if("modifyForm".equals(action)) {
-			System.out.println("123456");
+			//System.out.println("modifyForm");
+			
+			WebUtil.forward(request, response, "WEB-INF/views/user/modifyForm.jsp");
 		} else if("modify".equals(action)) {
+			
+			//System.out.println("modify");
+			//파라미터 꺼내기
+			String id = request.getParameter("id");
+			String password = request.getParameter("password");
+			String name = request.getParameter("name");
+			String gender = request.getParameter("gender");
+			
+			//Vo만들기
+			UserVo userVo = new UserVo();
+			userVo.setId(id);
+			userVo.setPassword(password);
+			userVo.setName(name);
+			userVo.setGender(gender);
+			
+			//Dao만들기
+			UserDao userDao = new UserDao();
+			userDao.update(userVo);
+			
+			//authUser
+			UserVo authUser = userDao.getUser(userVo);
+			
+			HttpSession session = request.getSession();
+			session.setAttribute("authUser", authUser);
+			
+			WebUtil.redirect(request, response, "/mysite2/main");
+			
+		} else if("addList".equals(action)){
+			System.out.println("addList");
+			
+			WebUtil.redirect(request, response, "./WEB-INF/views/gusetbook/addList.jsp");
+		} else if("deleteForm".endsWith(action)) {
+			
 			
 		}
 		
