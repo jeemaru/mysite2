@@ -78,6 +78,10 @@ public class UserController extends HttpServlet {
 			
 			//메인으로 리다이렉트
 			WebUtil.redirect(request, response, "/mysite2/main");
+		} else if("modifyForm".equals(action)) {
+			System.out.println("123456");
+		} else if("modify".equals(action)) {
+			
 		}
 		
 		
