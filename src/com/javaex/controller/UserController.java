@@ -110,13 +110,6 @@ public class UserController extends HttpServlet {
 			
 			WebUtil.redirect(request, response, "/mysite2/main");
 			
-		} else if("addList".equals(action)){
-			System.out.println("addList");
-			
-			WebUtil.redirect(request, response, "./WEB-INF/views/gusetbook/addList.jsp");
-		} else if("deleteForm".endsWith(action)) {
-			
-			
 		}
 		
 		

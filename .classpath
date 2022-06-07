@@ -14,5 +14,7 @@
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="C:/javaStudy/프로그램/jstl/jstl.jar"/>
+	<classpathentry kind="lib" path="C:/javaStudy/프로그램/jstl/standard.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

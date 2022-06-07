@@ -107,9 +107,8 @@
 		</div>
 		<!-- //container  -->
 
-		<div id="footer">
-			Copyright ⓒ 2020 김지수. All right reserved
-		</div>
+		<!-- footer -->
+		<jsp:include page="/WEB-INF/views/includes/footer.jsp"></jsp:include>
 		<!-- //footer -->
 
 	</div>

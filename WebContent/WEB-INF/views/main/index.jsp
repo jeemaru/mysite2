@@ -22,7 +22,8 @@
 			<h1>
 				<a href="/mysite2/main">MySite</a>
 			</h1>
-			
+			<!-- 헤더라인 -->
+			<jsp:include page=""></jsp:include>
 			<%if(authUser == null){%> <!-- 로그인 실패, 로그인 전 -->
 				<ul>
 					<li><a href="/mysite2/user?action=loginForm" class="btn_s">로그인</a></li>
@@ -37,6 +38,7 @@
 			<%}%>
 
 		</div>
+		<!-- 헤더라인 -->
 		<!-- //header -->
 
 		<div id="nav">
@@ -85,7 +87,8 @@
 		<!-- //container -->
 
 
-		<div id="footer">Copyright ⓒ 2022 김지수. All right reserved</div>
+		<!-- footer -->
+		<jsp:include page="/WEB-INF/views/includes/footer.jsp"></jsp:include>
 		<!-- //footer -->
 
 	</div>
