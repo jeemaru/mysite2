@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
 <%@ page import="com.javaex.vo.UserVo" %>
-<%
-	UserVo authUser = (UserVo)session.getAttribute("authUser");
-%>
+
 
 
 <!DOCTYPE html>
@@ -18,31 +18,13 @@
 <body>
 	<div id="wrap">
 
-		<div id="header" class="clearfix">
-			<h1>
-				<a href="/mysite2/main">MySite</a>
-			</h1>
-
-			<%if(authUser == null){%> <!-- 로그인 실패, 로그인 전 -->
-				<ul>
-					<li><a href="/mysite2/user?action=loginForm" class="btn_s">로그인</a></li>
-					<li><a href="/mysite2/user?action=joinForm" class="btn_s">회원가입</a></li>
-				</ul>
-			<%}else {%> <!-- 로그인 성공 -->
-				<ul>
-					<li><%=authUser.getName()%> 님 안녕하세요^^</li>
-					<li><a href="/mysite2/user?action=logout" class="btn_s">로그아웃</a></li>
-					<li><a href="" class="btn_s">회원정보수정</a></li>
-				</ul>
-			<%}%>
-			
-		</div>
-		<!-- //header -->
-
+		<!-- c:import header -->
+		<c:import url="/WEB-INF/views/includes/header.jsp"></c:import>
+		<!-- /c:import header -->
 		<div id="nav">
 			<ul class="clearfix">
 				<li><a href="">입사지원서</a></li>
-				<li><a href="">게시판</a></li>
+				<li><a href="/mysite2/guestbook?action=addList">게시판</a></li>
 				<li><a href="">갤러리</a></li>
 				<li><a href="">방명록</a></li>
 			</ul>
@@ -77,9 +59,9 @@
 	
 				<div id="user">
 					<div id="joinForm">
-						<form action="/mysite2/user" method="get">
-						<input type="text" name="action" value="join">
-	
+						<form action="" method="get">
+							<input type="hidden" name="action" value="join">
+						
 							<!-- 아이디 -->
 							<div class="form-group">
 								<label class="form-text" for="input-uid">아이디</label> 
@@ -134,9 +116,9 @@
 		</div>
 		<!-- //container  -->
 		
-		<!-- footer -->
-		<jsp:include page="/WEB-INF/views/includes/footer.jsp"></jsp:include>
-		<!-- //footer -->
+		<!-- c:import footer -->
+		<c:import url="/WEB-INF/views/includes/footer.jsp"></c:import>
+		<!-- /c:import footer -->
 
 	</div>
 	<!-- //wrap -->

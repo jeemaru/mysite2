@@ -5,9 +5,11 @@
 <%@ page import="com.javaex.vo.GuestbookVo"%>
 <%@ page import="com.javaex.vo.UserVo"%>
 
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
 <%
-	int no = Integer.parseInt(request.getParameter("no"));
-	UserVo authUser = (UserVo)session.getAttribute("authUser");
+int no = Integer.parseInt(request.getParameter("no"));
+UserVo authUser = (UserVo)session.getAttribute("authUser");
 %>
 
 <!DOCTYPE html>
@@ -22,29 +24,10 @@
 
 <body>
 	<div id="wrap">
-
-		<div id="header" class="clearfix">
-			<h1>
-				<a href="">MySite</a>
-			</h1>
-
-			<%if(authUser == null){%>	<!--로그인 실행-->
-				<!--로그인 실패-->
-				<ul>
-					<li><a href="/mysite2/user?action=loginForm" class="btn_s">로그인</a></li>
-					<li><a href="/mysite2/user?action=joinForm" class="btn_s">회원가입</a></li>
-				</ul>
-			<%} else{ %>
-				<!-- 로그인 성공 -->
-				<ul>
-				<li><%=authUser.getName()%> 님 안녕하세요^^</li>
-				<li><a href="/mysite2/user?action=logout" class="btn_s">로그아웃</a></li>
-				<li><a href="/mysite2/user?action=modifyForm" class="btn_s">회원정보수정</a></li>
-			</ul>
-			<%}%>
-			
-		</div>
-		<!-- //header -->
+	
+		<!-- c:import header -->
+		<c:import url="/WEB-INF/views/includes/header.jsp"></c:import>
+		<!-- /c:import header -->
 
 		<div id="nav">
 			<ul class="clearfix">
@@ -82,7 +65,7 @@
 				<!-- //content-head -->
 	
 				<div id="guestbook">
-					<form action="" method="">
+					<form action="" method="get">
 					<input type="hidden" name="action" value="delete">
 						<table id="guestDelete">
 							<colgroup>
@@ -110,9 +93,9 @@
 		</div>
 		<!-- //container  -->
 		
-		<!-- footer -->
-		<jsp:include page="/WEB-INF/views/includes/footer.jsp"></jsp:include>
-		<!-- //footer -->
+		<!-- c:import footer -->
+		<c:import url="/WEB-INF/views/includes/footer.jsp"></c:import>
+		<!-- /c:import footer -->
 
 	</div>
 	<!-- //wrap -->

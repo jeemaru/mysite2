@@ -4,6 +4,8 @@
 <%@ page import="com.javaex.vo.UserVo"%>
 <%@ page import="java.util.List"%>
 
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
 <%
 	UserVo authUser = (UserVo)session.getAttribute("authUser");
 	GuestbookDao guestbookDao = new GuestbookDao();
@@ -23,28 +25,10 @@
 
 <body>
 	<div id="wrap">
-
-		<div id="header" class="clearfix">
-			<h1>
-				<a href="">MySite</a>
-			</h1>
-
-			<%if(authUser == null){%>	<!--로그인 실행-->
-				<!--로그인 실패-->
-				<ul>
-					<li><a href="/mysite2/user?action=loginForm" class="btn_s">로그인</a></li>
-					<li><a href="/mysite2/user?action=joinForm" class="btn_s">회원가입</a></li>
-				</ul>
-			<%} else{ %>
-				<!-- 로그인 성공 -->
-				<ul>
-				<li><%=authUser.getName()%> 님 안녕하세요^^</li>
-				<li><a href="/mysite2/user?action=logout" class="btn_s">로그아웃</a></li>
-				<li><a href="/mysite2/user?action=modifyForm" class="btn_s">회원정보수정</a></li>
-			</ul>
-			
-			<% }%>
-		</div>
+		<!-- c:import header -->
+		<c:import url="/WEB-INF/views/includes/header.jsp"></c:import>
+		<!-- /c:import header -->
+	</div>
 		<!-- //header -->
 
 		<div id="nav">
@@ -111,7 +95,7 @@
 						
 					</form>	
 					
-					<%for(int i = 0 ; i < guestList.size(); i++){%>
+					<c:forEach items="${requestScope.gList}" var="guestbookVo" varStatus="status">
 					<table class="guestRead">
 						<colgroup>
 							<col style="width: 10%;">
@@ -119,18 +103,17 @@
 							<col style="width: 40%;">
 							<col style="width: 10%;">
 						</colgroup>
-						<tr>
-							<td><%= guestList.get(i).getNo() %></td>
-							<td><%= guestList.get(i).getName() %></td>
-							<td><%= guestList.get(i).getRegDate() %></td>
-							<td><a href="/mysite2/guestbook?action=deleteForm&no=<%=guestList.get(i).getNo()%>">삭제</a></td>
-						</tr>
-						<tr>
-							<td colspan=4 class="text-left"><%= guestList.get(i).getContent() %></td>
-						</tr>
-					</table>
-					<%} %>
-					
+							<tr>
+								<td>${guestbookVo.no}</td>
+								<td>${guestbookVo.name}</td>
+								<td>${guestbookVo.regDate}</td>
+								<td><a href="/mysite2/guestbook?action=deleteForm&no=${guestbookVo.no}">삭제</a></td>
+							</tr>
+							<tr>
+								<td colspan=4 class="text-left">${guestbookVo.content}</td>
+							</tr>
+						</table>
+					</c:forEach>
 					<!-- //guestRead -->
 					
 				</div>
