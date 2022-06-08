@@ -2,7 +2,10 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <%@ page import="com.javaex.vo.UserVo" %>
-
+<%
+	UserVo authUser = (UserVo)session.getAttribute("authUser");
+	UserVo userVo = (UserVo)request.getAttribute("userVo");
+%>
 
 
 <!DOCTYPE html>
@@ -24,9 +27,9 @@
 		<div id="nav">
 			<ul class="clearfix">
 				<li><a href="">입사지원서</a></li>
-				<li><a href="/mysite2/guestbook?action=addList">게시판</a></li>
+				<li><a href="/mysite2/board?action=board">게시판</a></li>
 				<li><a href="">갤러리</a></li>
-				<li><a href="">방명록</a></li>
+				<li><a href="/mysite2/guestbook?action=addList">방명록</a></li>
 			</ul>
 		</div>
 		<!-- //nav -->
@@ -65,20 +68,20 @@
 							<!-- 아이디 -->
 							<div class="form-group">
 								<label class="form-text" for="input-uid">아이디</label> 
-								<input type="text" id="input-uid" name="id" value="" placeholder="아이디를 입력하세요">
+								<input type="text" id="input-uid" name="id" value="<%=userVo.getId()%>" placeholder="아이디를 입력하세요">
 								<button type="button" id="">중복체크</button>
 							</div>
 	
 							<!-- 비밀번호 -->
 							<div class="form-group">
 								<label class="form-text" for="input-pass">패스워드</label> 
-								<input type="text" id="input-pass" name="password" value="" placeholder="비밀번호를 입력하세요"	>
+								<input type="text" id="input-pass" name="password" value="<%=userVo.getPassword() %>" placeholder="비밀번호를 입력하세요"	>
 							</div>
 	
 							<!-- 이메일 -->
 							<div class="form-group">
 								<label class="form-text" for="input-name">이름</label> 
-								<input type="text" id="input-name" name="name" value="" placeholder="이름을 입력하세요">
+								<input type="text" id="input-name" name="name" value="<%=userVo.getName()%>" placeholder="이름을 입력하세요">
 							</div>
 	
 							<!-- //나이 -->
